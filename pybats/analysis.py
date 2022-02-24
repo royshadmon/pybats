@@ -11,6 +11,7 @@ from .define_models import define_dglm, define_dcmm, define_dbcm, define_dlmm
 from .shared import define_holiday_regressors
 from collections.abc import Iterable
 
+
 # Cell
 def analysis(Y, X=None, k=1, forecast_start=0, forecast_end=0,
              nsamps=500, family = 'normal', n = None,
@@ -195,7 +196,6 @@ def analysis_dcmm(Y, X=None, k=1, forecast_start=0, forecast_end=0,
     """
     This is a helpful function to run a standard analysis using a DCMM.
     """
-
     if latent_factor is not None:
         is_lf = True
         # Note: This assumes that the bernoulli & poisson components have the same number of latent factor components
@@ -515,7 +515,6 @@ def analysis_dlmm(Y, X, k=1, forecast_start=0, forecast_end=0,
     """
     This is a helpful function to run a standard analysis using a DLMM.
     """
-
     if latent_factor is not None:
         is_lf = True
         # Note: This assumes that the bernoulli & poisson components have the same number of latent factor components

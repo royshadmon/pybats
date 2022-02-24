@@ -114,7 +114,7 @@ def forecast_path(mod, k, X = None, nsamps = 1):
     """
     Path forecast function k steps ahead using sequential simulation
     """
-
+    print(f'FORECASt PATH LINE 117')
     samps = np.zeros([nsamps, k])
 
     F = np.copy(mod.F)
@@ -123,6 +123,7 @@ def forecast_path(mod, k, X = None, nsamps = 1):
         param1 = mod.param1
         param2 = mod.param2
 
+
         a = np.copy(mod.a)
         R = np.copy(mod.R)
 
@@ -130,7 +131,7 @@ def forecast_path(mod, k, X = None, nsamps = 1):
 
             # Plug in the correct F values
             if mod.nregn > 0:
-                F = update_F(mod, X[i,:], F=F)
+                F = update_F(mod, X[i:,], F=F)
             # if mod.nregn > 0:
             #     F[mod.iregn] = X[i,:].reshape(mod.nregn,1)
 
@@ -184,7 +185,7 @@ def forecast_path_copula(mod, k, X = None, nsamps = 1, t_dist=False, y=None, nu=
 
         # Plug in the correct F values
         if mod.nregn > 0:
-            F = update_F(mod, X[i, :], F=F)
+            F = update_F(mod, X[i,:], F=F)
         # if mod.nregn > 0:
         #     F[mod.iregn] = X[i,:].reshape(mod.nregn,1)
 
@@ -215,7 +216,6 @@ def forecast_path_dlm(mod, k, X=None, nsamps=1, approx=True):
     """
     Path forecast function k steps ahead for a DLM
     """
-
     if approx:
 
         mean = np.zeros([k])
@@ -235,8 +235,7 @@ def forecast_path_dlm(mod, k, X=None, nsamps=1, approx=True):
 
             # Plug in the correct F values
             if mod.nregn > 0:
-                F = update_F(mod, X[i, :], F=F)
-
+                F = update_F(mod, X[i:,], F=F, i=i)
             Flist[i] = np.copy(F)
 
             # Find lambda mean and var
@@ -269,7 +268,7 @@ def forecast_path_dlm(mod, k, X=None, nsamps=1, approx=True):
 
             # Plug in the correct F values
             if mod.nregn > 0:
-                F = update_F(mod, X[i, :], F=F)
+                F = update_F(mod, X[i:,], F=F)
 
             # mean
             ft = (thetas @ F).reshape(-1)

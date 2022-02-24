@@ -264,7 +264,6 @@ class dglm:
         """
         Simulate from the forecast distribution at time *t+k*.
         """
-
         if self.latent_factor:
             if analytic:
                 return forecast_marginal_lf_analytic(self, k, X, phi_mu, phi_sigma, nsamps, mean_only, state_mean_var)

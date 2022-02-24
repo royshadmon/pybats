@@ -165,8 +165,6 @@ class dlmm:
         phi_mu = self.make_pair(phi_mu)
         phi_sigma = self.make_pair(phi_sigma)
 
-        #print(X[0])
-
         if mean_only:
             mean_bern = self.bern_mod.forecast_marginal_lf_analytic(k, X[0], phi_mu[0], phi_sigma[0], nsamps, mean_only)
             mean_dlm = self.dlm.forecast_marginal_lf_analytic(k, X[1], phi_mu[1], phi_sigma[1], nsamps, mean_only)

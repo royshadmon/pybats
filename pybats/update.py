@@ -6,14 +6,14 @@ __all__ = ['update', 'update_dlm', 'update_bindglm']
 import numpy as np
 
 # Internal Cell
-def update_F(mod, X, F=None):
+def update_F(mod, X, F=None, i=0):
     if F is None:
         if mod.nregn > 0:
             mod.F[mod.iregn] = X.reshape(mod.nregn, 1)
     else:
         if mod.nregn > 0:
             # F = mod.F.copy()
-            F[mod.iregn] = X.reshape(mod.nregn, 1)
+            F[mod.iregn[i:]] = X.reshape(mod.nregn-i, 1)
         return F
 
 # Cell
