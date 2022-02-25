@@ -395,6 +395,14 @@ class dglm:
                                  'Standard Deviation': np.sqrt(self.R.diagonal())[self.ilf]},
                                  index=names).round(2)
 
+    # Added functions
+    def get_k_median_forecast(self, forecast):
+        k_steps = np.median(forecast, axis=0)
+        return k_steps
+    def get_k_mean_forecast(self, forecast):
+        k_steps = np.mean(forecast, axis=0)
+        return k_steps
+
 # Cell
 class bern_dglm(dglm):
 

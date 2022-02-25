@@ -213,8 +213,15 @@ def main():
     # print(f'RETURN IS {forecast_samples}')
 
     forecast_samples = forecast_path_dlm(mod_wind, k, X,nsamps=5)
-    print(f'forecast_samples are \n{forecast_samples}')
+    # forecast_path_dlm returns a numpy ndarray containing [k x nsamps]
+    # Each column contains a 1-step prediction and each row is a random sample from the distribution
+    # For example, column 2 is the k+2 prediction.
 
+    # The best way to minimize the loss is to take the median sample from each k-step prediction.
+    # print(type(forecast_samples))
+    print(f'forecast_samples are \n{forecast_samples}')
+    print(f'MEDIAN ISn{mod.get_k_median_forecast(forecast_samples)}')
+    print(f'MEAN IS \n{mod.get_k_mean_forecast(forecast_samples)}')
 
 
 
